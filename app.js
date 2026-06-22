@@ -1,13 +1,5 @@
-Я подготовил для вас обновленный файл `app.js`. В него добавлены 11 новых уникальных товаров из разных категорий (итого 17 товаров), а также реализована логика реального времени для отслеживания доставки.
 
-Теперь при оформлении заказа устанавливается таймер (в демо-целях он занимает от 2 до 3 минут). Статус заказа автоматически проходит стадии от «Размещен» до «Доставлен», а расчетное время (ETA) обновляется каждую секунду по принципу обратного отсчета прямо на ваших глазах (как в окне отслеживания, так и в личном кабинете).
-
-Ниже представлен полный обновленный код файла `app.js`:
-
-```javascript
-const PRODUCTS = [
-  {
-    id: 1,
+id: 1,
     title: 'Aether Glass X',
     category: 'optics',
     price: 1299,
@@ -352,7 +344,7 @@ function updateOrdersStatus() {
         const remainingMs = total - elapsed;
         const mins = Math.floor(remainingMs / 60000);
         const secs = Math.floor((remainingMs % 60000) / 1000);
-        newEta = `${mins} мин ${secs.toString().padStart(2, '0')} сек`;
+        newEta = `${ mins } мин ${ secs.toString().padStart(2, '0') } сек`;
       }
 
       if (order.status !== newStatus || order.eta !== newEta) {
@@ -386,13 +378,13 @@ function updateOrdersStatus() {
 
 function updateTrackingDOM(order) {
   document.getElementById('track-eta').textContent = 
-    order.status === 'delivered' ? 'Доставлен ✓' : `~${order.eta}`;
+    order.status === 'delivered' ? 'Доставлен ✓' : `~${ order.eta } `;
   
   const stepOrder = ['placed', 'processing', 'transit', 'delivered'];
   const currentIdx = stepOrder.indexOf(order.status);
 
   for (let i = 1; i <= 4; i++) {
-    const el = document.getElementById(`track-step-${i}`);
+    const el = document.getElementById(`track - step - ${ i } `);
     if (el) {
       el.classList.remove('completed', 'active');
       const stepIdx = i - 1;
@@ -589,7 +581,7 @@ function renderProducts() {
 
   container.innerHTML = filtered.map(product => {
     return `
-      <article class="product-card glassmorphism" data-id="${product.id}">
+  < article class="product-card glassmorphism" data - id="${product.id}" >
         <div class="card-img-wrapper">
           <img src="${product.image}" alt="${product.title}" loading="lazy">
         </div>
@@ -617,8 +609,8 @@ function renderProducts() {
             </div>
           </div>
         </div>
-      </article>
-    `;
+      </article >
+  `;
   }).join('');
 
   lucide.createIcons();
@@ -673,12 +665,12 @@ function openProductModal(productId) {
 
   document.getElementById('modal-product-title').textContent = product.title;
   document.getElementById('modal-product-rating').textContent = product.rating;
-  document.getElementById('modal-product-reviews').textContent = `(${product.reviews} отзывов)`;
-  document.getElementById('modal-product-price').textContent = `$${product.price.toLocaleString()}`;
+  document.getElementById('modal-product-reviews').textContent = `(${ product.reviews } отзывов)`;
+  document.getElementById('modal-product-price').textContent = `$${ product.price.toLocaleString() } `;
   document.getElementById('modal-product-desc').textContent = product.description;
 
   const specsUl = document.getElementById('modal-product-specs');
-  specsUl.innerHTML = product.specs.map(spec => `<li>${spec}</li>`).join('');
+  specsUl.innerHTML = product.specs.map(spec => `< li > ${ spec }</li > `).join('');
 
   document.getElementById('qty-input').value = 1;
 
@@ -703,7 +695,7 @@ function addToCart(productId, quantity) {
   saveCart();
   updateCartBadge();
   renderCart();
-  showToast(`Добавлено в корзину: ${product.title} (${quantity} шт.)`, 'success');
+  showToast(`Добавлено в корзину: ${ product.title } (${ quantity } шт.)`, 'success');
 }
 
 function updateCartQuantity(productId, delta) {
@@ -731,7 +723,7 @@ function removeFromCart(productId) {
   saveCart();
   updateCartBadge();
   renderCart();
-  showToast(`Удалено из корзины: ${productName}`, 'error');
+  showToast(`Удалено из корзины: ${ productName } `, 'error');
 }
 
 function renderCart() {
@@ -740,11 +732,11 @@ function renderCart() {
 
   if (state.cart.length === 0) {
     container.innerHTML = `
-      <div class="empty-cart-msg">
+  < div class="empty-cart-msg" >
         <i data-lucide="shopping-bag"></i>
         <p>Ваша корзина пуста</p>
-      </div>
-    `;
+      </div >
+  `;
     totalPriceText.textContent = '$0';
     lucide.createIcons();
     return;
@@ -756,7 +748,7 @@ function renderCart() {
     total += itemTotal;
     
     return `
-      <div class="cart-item">
+  < div class="cart-item" >
         <div class="cart-item-img">
           <img src="${item.product.image}" alt="${item.product.title}">
         </div>
@@ -775,11 +767,11 @@ function renderCart() {
             </button>
           </div>
         </div>
-      </div>
-    `;
+      </div >
+  `;
   }).join('');
 
-  totalPriceText.textContent = `$${total.toLocaleString()}`;
+  totalPriceText.textContent = `$${ total.toLocaleString() } `;
   lucide.createIcons();
 }
 
@@ -806,13 +798,13 @@ function showToast(message, type = 'success') {
   const container = document.getElementById('toast-container');
   
   const toast = document.createElement('div');
-  toast.className = `toast toast-${type} glassmorphism`;
+  toast.className = `toast toast - ${ type } glassmorphism`;
   
   const iconName = type === 'success' ? 'check-circle' : 'alert-circle';
   toast.innerHTML = `
-    <i data-lucide="${iconName}" class="toast-icon"></i>
+  < i data - lucide="${iconName}" class="toast-icon" ></i >
     <span>${message}</span>
-  `;
+`;
   
   container.appendChild(toast);
   lucide.createIcons();
@@ -843,7 +835,7 @@ function goToCheckoutStep(stepNumber) {
 
   const steps = [1, 2, 3];
   steps.forEach(num => {
-    const tab = document.getElementById(`step-${num}-tab`);
+    const tab = document.getElementById(`step - ${ num } -tab`);
     tab.classList.remove('active', 'completed');
     if (num < stepNumber) {
       tab.classList.add('completed');
@@ -852,7 +844,7 @@ function goToCheckoutStep(stepNumber) {
     }
   });
 
-  document.getElementById(`checkout-step-${stepNumber}`).classList.remove('hidden');
+  document.getElementById(`checkout - step - ${ stepNumber } `).classList.remove('hidden');
 }
 
 function setupCardMockupListeners() {
@@ -888,7 +880,7 @@ function setupCardMockupListeners() {
 
 function processCheckoutOrder() {
   const orderNum = 'AE-' + Math.floor(100000 + Math.random() * 900000);
-  document.getElementById('order-number-val').textContent = `#${orderNum}`;
+  document.getElementById('order-number-val').textContent = `#${ orderNum } `;
 
   const address = document.getElementById('checkout-address').value || 'г. Москва, ул. Ленина, д. 1';
   
@@ -916,7 +908,7 @@ function processCheckoutOrder() {
   updateCartBadge();
   renderCart();
 
-  showToast(`Заказ #${orderNum} оформлен!`, 'success');
+  showToast(`Заказ #${ orderNum } оформлен!`, 'success');
 }
 
 function saveOrders() {
@@ -951,7 +943,7 @@ function setupTrackingListeners() {
   const openTracking = () => {
     if (state.orders.length > 0) {
       const last = state.orders[state.orders.length - 1];
-      document.getElementById('tracking-input').value = `#${last.id}`;
+      document.getElementById('tracking-input').value = `#${ last.id } `;
     }
     trackingModal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1005,7 +997,7 @@ function generateDemoOrder(query) {
     items.push({ title: prod, quantity: 1, price });
   }
   return {
-    id: query.startsWith('AE-') ? query : `AE-${query}`,
+    id: query.startsWith('AE-') ? query : `AE - ${ query } `,
     address: pick(MOCK_ADDRESSES),
     status,
     items,
@@ -1014,24 +1006,24 @@ function generateDemoOrder(query) {
 }
 
 function renderTrackingResults(order) {
-  document.getElementById('track-order-id').textContent = `#${order.id}`;
+  document.getElementById('track-order-id').textContent = `#${ order.id } `;
   document.getElementById('track-eta').textContent =
-    order.status === 'delivered' ? 'Доставлен ✓' : `~${order.eta}`;
+    order.status === 'delivered' ? 'Доставлен ✓' : `~${ order.eta } `;
   document.getElementById('track-address-text').textContent = order.address;
 
   const itemsList = document.getElementById('track-items-list');
   itemsList.innerHTML = order.items.map(item => `
-    <div class="track-item-row">
+  < div class="track-item-row" >
       <span>${item.title} × ${item.quantity}</span>
       <span>$${(item.price * item.quantity).toLocaleString()}</span>
-    </div>
+    </div >
   `).join('');
 
   const stepOrder = ['placed', 'processing', 'transit', 'delivered'];
   const currentIdx = stepOrder.indexOf(order.status);
 
   for (let i = 1; i <= 4; i++) {
-    const el = document.getElementById(`track-step-${i}`);
+    const el = document.getElementById(`track - step - ${ i } `);
     el.classList.remove('completed', 'active');
     const stepIdx = i - 1;
     if (stepIdx < currentIdx) {
@@ -1136,7 +1128,7 @@ function renderProfileOrders() {
     const isTransit = order.status === 'transit';
 
     return `
-      <div class="profile-order-card glassmorphism">
+  < div class="profile-order-card glassmorphism" >
         <div class="profile-order-header">
           <div class="profile-order-meta">
             <span class="profile-order-id">#${order.id}</span>
@@ -1175,8 +1167,8 @@ function renderProfileOrders() {
             </button>
           </div>
         </div>
-      </div>
-    `;
+      </div >
+  `;
   }).join('');
 
   lucide.createIcons();
@@ -1188,7 +1180,7 @@ function trackOrderFromProfile(orderId) {
 
   profileModal.classList.remove('open');
 
-  document.getElementById('tracking-input').value = `#${orderId}`;
+  document.getElementById('tracking-input').value = `#${ orderId } `;
   document.getElementById('tracking-results').classList.add('hidden');
   document.getElementById('tracking-error').classList.add('hidden');
 
@@ -1200,5 +1192,3 @@ function trackOrderFromProfile(orderId) {
 }
 
 window.trackOrderFromProfile = trackOrderFromProfile;
-
-```
