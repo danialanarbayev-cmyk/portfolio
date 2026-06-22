@@ -1,3 +1,10 @@
+Я подготовил для вас обновленный файл `app.js`. В него добавлены 11 новых уникальных товаров из разных категорий (итого 17 товаров), а также реализована логика реального времени для отслеживания доставки.
+
+Теперь при оформлении заказа устанавливается таймер (в демо-целях он занимает от 2 до 3 минут). Статус заказа автоматически проходит стадии от «Размещен» до «Доставлен», а расчетное время (ETA) обновляется каждую секунду по принципу обратного отсчета прямо на ваших глазах (как в окне отслеживания, так и в личном кабинете).
+
+Ниже представлен полный обновленный код файла `app.js`:
+
+```javascript
 const PRODUCTS = [
   {
     id: 1,
@@ -94,6 +101,182 @@ const PRODUCTS = [
       'Локальное шифрование данных без облака'
     ],
     description: 'Центральная нервная система вашего умного пространства. Контролируйте освещение, температуру и музыку с помощью простых взмахов рук и голосовых команд в приватном режиме.'
+  },
+  {
+    id: 7,
+    title: 'AeroGlide Boots',
+    category: 'wearables',
+    price: 499,
+    rating: 4.8,
+    reviews: 42,
+    image: 'images/boots.png',
+    specs: [
+      'Антигравитационная подошва',
+      'Автошнуровка на базе ИИ',
+      'Кинетическая зарядка от ходьбы',
+      'Ударопрочный композитный материал'
+    ],
+    description: 'Обувь с микро-антигравитационными двигателями для легкого передвижения и компенсации нагрузки на суставы.'
+  },
+  {
+    id: 8,
+    title: 'NeuroLink Implant',
+    category: 'wearables',
+    price: 1999,
+    rating: 4.9,
+    reviews: 215,
+    image: 'images/implant.png',
+    specs: [
+      'Прямой нейронный интерфейс',
+      '1 ТБ встроенной квантовой памяти',
+      'Беспроводная зарядка от тепла тела',
+      'Защита данных уровня милитари'
+    ],
+    description: 'Безопасный неинвазивный нейроинтерфейс для прямого подключения к метавселенной без использования физических экранов.'
+  },
+  {
+    id: 9,
+    title: 'Quantum Mirror',
+    category: 'smarthome',
+    price: 849,
+    rating: 4.7,
+    reviews: 88,
+    image: 'images/mirror.png',
+    specs: [
+      'Дополненная реальность в отражении',
+      'Анализ здоровья по цвету кожи',
+      'Умный подбор гардероба',
+      'Не запотевающее нано-покрытие'
+    ],
+    description: 'Умное зеркало, которое не только показывает ваше отражение, но и проводит ежедневный чек-ап здоровья и помогает подобрать идеальный образ.'
+  },
+  {
+    id: 10,
+    title: 'Sonic Shower',
+    category: 'smarthome',
+    price: 1299,
+    rating: 4.6,
+    reviews: 54,
+    image: 'images/shower.png',
+    specs: [
+      'Очистка ультразвуковыми волнами',
+      'Экономия 90% воды',
+      'Встроенная ароматерапия',
+      'Индивидуальные термо-профили'
+    ],
+    description: 'Инновационная система душа, использующая плотный туман и звуковые волны для глубокой очистки тела с минимальным расходом воды.'
+  },
+  {
+    id: 11,
+    title: 'HoloType Keyboard',
+    category: 'smarthome',
+    price: 149,
+    rating: 4.5,
+    reviews: 120,
+    image: 'images/keyboard.png',
+    specs: [
+      'Проекция клавиатуры на любую поверхность',
+      'Тактильная отдача за счет ультразвука',
+      'Распознавание жестов 10 пальцев',
+      'Компактный карманный размер'
+    ],
+    description: 'Забудьте о физических клавишах. Эта миниатюрная призма проецирует полноразмерную клавиатуру и симулирует нажатия звуковым давлением.'
+  },
+  {
+    id: 12,
+    title: 'Plasma Lighter',
+    category: 'wearables',
+    price: 89,
+    rating: 4.8,
+    reviews: 310,
+    image: 'images/lighter.png',
+    specs: [
+      'Температура плазмы до 2000°C',
+      'Не тухнет на ветру и под водой',
+      'Биометрическая защита от случайного включения',
+      'Зарядка через Type-C'
+    ],
+    description: 'Карманный генератор плазменной дуги. Идеально подходит для выживания, туризма и повседневного использования в любых условиях.'
+  },
+  {
+    id: 13,
+    title: 'Echo Lens',
+    category: 'optics',
+    price: 399,
+    rating: 4.7,
+    reviews: 145,
+    image: 'images/lens.png',
+    specs: [
+      'Умные контактные линзы с AR',
+      'Биосовместимый гидрогель',
+      'Автоматический фокус и зум',
+      'Перевод текста в реальном времени'
+    ],
+    description: 'Незаметные смарт-линзы, выводящие навигацию и уведомления прямо вам в глаз. Функция бионического зума позволяет видеть микроскопические детали.'
+  },
+  {
+    id: 14,
+    title: 'Synapse Headband',
+    category: 'wearables',
+    price: 249,
+    rating: 4.6,
+    reviews: 90,
+    image: 'images/headband.png',
+    specs: [
+      'Стимуляция фаз глубокого сна',
+      'Снятие мигрени за 5 минут',
+      'Мониторинг активности мозга (ЭЭГ)',
+      'Гипоаллергенная ткань'
+    ],
+    description: 'Умный ободок для головы, улучшающий качество сна и концентрацию с помощью мягкой микротоковой стимуляции нейронов.'
+  },
+  {
+    id: 15,
+    title: 'Omni-Drone Assistant',
+    category: 'smarthome',
+    price: 699,
+    rating: 4.9,
+    reviews: 77,
+    image: 'images/drone.png',
+    specs: [
+      'Летающий ИИ-помощник',
+      'Тихие ионные двигатели',
+      'Распознавание лиц и эмоций',
+      'Патрулирование дома в режиме охраны'
+    ],
+    description: 'Ваш личный парящий ассистент. Может принести небольшие предметы, следить за безопасностью дома или вести видеосъемку с необычных ракурсов.'
+  },
+  {
+    id: 16,
+    title: 'Aether Cloak',
+    category: 'wearables',
+    price: 1599,
+    rating: 4.8,
+    reviews: 22,
+    image: 'images/cloak.png',
+    specs: [
+      'Адаптивный камуфляж',
+      'Климат-контроль (обогрев и охлаждение)',
+      'Ткань на основе графена',
+      'Защита от радиации и ЭМИ'
+    ],
+    description: 'Высокотехнологичный плащ с метаматериалами, способный подстраиваться под окружающую среду, скрывая вас от тепловизоров и регулируя температуру тела.'
+  },
+  {
+    id: 17,
+    title: 'Bio-Synthesizer',
+    category: 'smarthome',
+    price: 2499,
+    rating: 4.5,
+    reviews: 34,
+    image: 'images/synth.png',
+    specs: [
+      'Печать еды на 3D-биопринтере',
+      'Синтез витаминов по анализу крови',
+      'Нулевой углеродный след',
+      '1000+ рецептов в базе данных'
+    ],
+    description: 'Персональный пищевой синтезатор. Создает сбалансированные блюда молекулярной кухни с идеальным КБЖУ, подстроенным под ваши потребности.'
   }
 ];
 
@@ -121,6 +304,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function init() {
+  // Исправление старых заказов, добавление даты размещения, если её нет
+  state.orders.forEach(o => {
+    if (!o.placedAt) {
+      o.placedAt = Date.now() - 300000;
+      o.deliveryDurationMs = 60000;
+      o.status = 'delivered';
+      o.eta = 'Доставлен ✓';
+    }
+  });
+  saveOrders();
+
   renderProducts();
   updateCartBadge();
   renderCart();
@@ -128,6 +322,89 @@ function init() {
   setupTrackingListeners();
   setupProfileListeners();
   lucide.createIcons();
+
+  // Запуск цикла обновления времени доставки каждую секунду
+  setInterval(updateOrdersStatus, 1000);
+}
+
+function updateOrdersStatus() {
+  const now = Date.now();
+  let changed = false;
+
+  state.orders.forEach(order => {
+    if (order.status !== 'delivered' && order.placedAt) {
+      const elapsed = now - order.placedAt;
+      const total = order.deliveryDurationMs || 120000;
+      
+      let newStatus = 'placed';
+      if (elapsed >= total) {
+        newStatus = 'delivered';
+      } else if (elapsed > total * 0.6) {
+        newStatus = 'transit';
+      } else if (elapsed > total * 0.2) {
+        newStatus = 'processing';
+      }
+
+      let newEta = order.eta;
+      if (newStatus === 'delivered') {
+        newEta = 'Доставлен ✓';
+      } else {
+        const remainingMs = total - elapsed;
+        const mins = Math.floor(remainingMs / 60000);
+        const secs = Math.floor((remainingMs % 60000) / 1000);
+        newEta = `${mins} мин ${secs.toString().padStart(2, '0')} сек`;
+      }
+
+      if (order.status !== newStatus || order.eta !== newEta) {
+        order.status = newStatus;
+        order.eta = newEta;
+        changed = true;
+      }
+    }
+  });
+
+  if (changed) {
+    saveOrders();
+    
+    // Обновляем окно трекинга (отслеживания), если оно открыто
+    const trackingModal = document.getElementById('tracking-modal');
+    if (trackingModal && trackingModal.classList.contains('open')) {
+      const inputVal = document.getElementById('tracking-input').value.trim().replace(/^#/, '').toUpperCase();
+      if (inputVal) {
+        const order = state.orders.find(o => o.id.toUpperCase() === inputVal);
+        if (order) updateTrackingDOM(order);
+      }
+    }
+    
+    // Обновляем окно личного кабинета, если оно открыто
+    const profileModal = document.getElementById('profile-modal');
+    if (profileModal && profileModal.classList.contains('open')) {
+      renderProfileOrders();
+    }
+  }
+}
+
+function updateTrackingDOM(order) {
+  document.getElementById('track-eta').textContent = 
+    order.status === 'delivered' ? 'Доставлен ✓' : `~${order.eta}`;
+  
+  const stepOrder = ['placed', 'processing', 'transit', 'delivered'];
+  const currentIdx = stepOrder.indexOf(order.status);
+
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById(`track-step-${i}`);
+    if (el) {
+      el.classList.remove('completed', 'active');
+      const stepIdx = i - 1;
+      if (stepIdx < currentIdx) {
+        el.classList.add('completed');
+      } else if (stepIdx === currentIdx) {
+        el.classList.add('active');
+      }
+    }
+  }
+
+  animateDrone(order.status);
 }
 
 function setupEventListeners() {
@@ -614,15 +891,20 @@ function processCheckoutOrder() {
   document.getElementById('order-number-val').textContent = `#${orderNum}`;
 
   const address = document.getElementById('checkout-address').value || 'г. Москва, ул. Ленина, д. 1';
-  const status = 'transit';
+  
+  // Добавляем время размещения и длительность в реальном времени (от 2 до 3 минут для демо)
+  const placedAt = Date.now();
+  const deliveryDurationMs = Math.floor(120000 + Math.random() * 60000);
 
   const orderSnapshot = {
     id: orderNum,
     address,
-    status,
+    status: 'placed',
     date: new Date().toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }),
     items: state.cart.map(i => ({ title: i.product.title, quantity: i.quantity, price: i.product.price, image: i.product.image })),
-    eta: Math.floor(15 + Math.random() * 45) + ' минут'
+    placedAt,
+    deliveryDurationMs,
+    eta: 'Вычисляется...'
   };
   state.orders.push(orderSnapshot);
   saveOrders();
@@ -645,8 +927,13 @@ function saveOrders() {
 
 const MOCK_PRODUCTS_NAMES = [
   'Aether Glass X', 'Neural Earbuds Pro', 'Chronos Ring',
-  'Nova Projector', 'Apex Wristwatch', 'Vortex Hub'
+  'Nova Projector', 'Apex Wristwatch', 'Vortex Hub',
+  'AeroGlide Boots', 'NeuroLink Implant', 'Quantum Mirror',
+  'Sonic Shower', 'HoloType Keyboard', 'Plasma Lighter',
+  'Echo Lens', 'Synapse Headband', 'Omni-Drone Assistant',
+  'Aether Cloak', 'Bio-Synthesizer'
 ];
+
 const MOCK_ADDRESSES = [
   'г. Москва, ул. Арбат, д. 12, кв. 4',
   'г. Санкт-Петербург, Невский проспект, д. 88',
@@ -722,7 +1009,7 @@ function generateDemoOrder(query) {
     address: pick(MOCK_ADDRESSES),
     status,
     items,
-    eta: (15 + (seed % 45)) + ' минут'
+    eta: status === 'delivered' ? 'Доставлен ✓' : 'Неизвестно'
   };
 }
 
@@ -913,3 +1200,5 @@ function trackOrderFromProfile(orderId) {
 }
 
 window.trackOrderFromProfile = trackOrderFromProfile;
+
+```
