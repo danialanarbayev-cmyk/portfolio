@@ -1,407 +1,71 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="kk">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aether Labs | Магазин будущего</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Даурен мен Алинаның үйлену тойы</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="glow-bg">
-    <div class="glow-sphere glow-1"></div>
-    <div class="glow-sphere glow-2"></div>
-  </div>
+    <main class="container">
+        <section id="rsvp" class="section glass-card">
+            <h2 class="section-title">Тойға қатысуыңызды растаңыз:</h2>
+            <form id="rsvp-form" class="rsvp-form">
+                <div class="form-group">
+                    <label for="guest-name" class="form-label">Аты-жөніңіз:</label>
+                    <p class="form-input-desc">Жұбайыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз</p>
+                    <input type="text" id="guest-name" class="form-input" placeholder="Атыңыз және Жұбайыңыздың аты"
+                        required>
+                </div>
 
-  <header>
-    <div class="header-container container">
-      <a href="#" class="logo" id="logo-btn">
-        <span class="logo-icon">▲</span>
-        AETHER<span>LABS</span>
-      </a>
+                <div class="form-group">
+                    <label class="form-label">Жауабыңыз:</label>
+                    <div class="radio-options">
+                        <label class="radio-card">
+                            <input type="radio" name="attendance" value="Әрине, келемін" required checked>
+                            <div class="radio-custom-card">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Әрине, келемін</span>
+                            </div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="attendance" value="Жұбайыммен келемін">
+                            <div class="radio-custom-card">
+                                <i class="fas fa-user-friends"></i>
+                                <span>Жұбайыммен келемін</span>
+                            </div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="attendance" value="Келе алмаймын">
+                            <div class="radio-custom-card">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Келе алмаймын</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
 
-      <div class="search-bar">
-        <i data-lucide="search" class="search-icon"></i>
-        <input type="text" id="search-input" placeholder="Поиск девайсов будущего...">
-        <button id="clear-search" class="hidden"><i data-lucide="x"></i></button>
-      </div>
-
-      <div class="header-actions">
-        <button id="profile-toggle-btn" class="cart-btn" title="Личный кабинет">
-          <i data-lucide="user"></i>
-        </button>
-        <button id="track-toggle-btn" class="cart-btn" title="Отследить заказ">
-          <i data-lucide="radar"></i>
-        </button>
-        <button id="cart-toggle-btn" class="cart-btn" title="Корзина">
-          <i data-lucide="shopping-bag"></i>
-          <span class="cart-badge" id="cart-badge-count">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <section class="hero-section">
-    <div class="hero-container container">
-      <div class="hero-content">
-        <div class="hero-tag">Технологии Новой Эры</div>
-        <h1>Создаем будущее сегодня</h1>
-        <p>Откройте для себя носимые нейродевайсы, голографические проекторы и умные аксессуары с премиальным дизайном Aether Labs.</p>
-        <button class="btn btn-primary" id="explore-btn">
-          Исследовать девайсы <i data-lucide="arrow-down" class="btn-icon"></i>
-        </button>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-card-glow"></div>
-        <img src="images/glass.png" alt="Aether Glass X" id="hero-img">
-      </div>
-    </div>
-  </section>
-
-  <main class="container" id="catalog-section">
-    <div class="catalog-header">
-      <h2>Наши Девайсы</h2>
-      <div class="sort-wrapper">
-        <label for="sort-select">Сортировка:</label>
-        <select id="sort-select" class="custom-select">
-          <option value="popular">Популярные</option>
-          <option value="price-asc">Сначала дешевле</option>
-          <option value="price-desc">Сначала дороже</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="category-tabs">
-      <button class="category-tab active" data-category="all">Все</button>
-      <button class="category-tab" data-category="wearables">Носимые</button>
-      <button class="category-tab" data-category="audio">Аудио</button>
-      <button class="category-tab" data-category="optics">Оптика</button>
-      <button class="category-tab" data-category="smarthome">Умный дом</button>
-    </div>
-
-    <div class="products-grid" id="products-container"></div>
-
-    <div class="no-products hidden" id="no-products-msg">
-      <i data-lucide="alert-circle" class="large-icon"></i>
-      <h3>Ничего не найдено</h3>
-      <p>Попробуйте изменить запрос или категорию фильтрации.</p>
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-container container">
-      <p>&copy; 2026 Aether Labs. Все права защищены. Разработано для ценителей будущего.</p>
-    </div>
-  </footer>
-
-  <div class="cart-drawer-overlay" id="cart-overlay"></div>
-  <aside class="cart-drawer" id="cart-drawer">
-    <div class="cart-drawer-header">
-      <h3>Корзина</h3>
-      <button id="cart-close-btn" class="icon-btn">
-        <i data-lucide="x"></i>
-      </button>
-    </div>
-
-    <div class="cart-items-container" id="cart-items"></div>
-
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>Итого:</span>
-        <span id="cart-total-price">$0</span>
-      </div>
-      <button id="checkout-init-btn" class="btn btn-primary btn-block">
-        Оформить заказ <i data-lucide="credit-card" class="btn-icon"></i>
-      </button>
-    </div>
-  </aside>
-
-  <div class="modal-overlay" id="product-modal">
-    <div class="modal-content glassmorphism">
-      <button class="modal-close-btn icon-btn" id="product-modal-close">
-        <i data-lucide="x"></i>
-      </button>
-      <div class="modal-body-grid">
-        <div class="modal-img-container">
-          <img src="" alt="" id="modal-product-img">
-        </div>
-        <div class="modal-details">
-          <span class="product-category" id="modal-product-category">Категория</span>
-          <h2 id="modal-product-title">Название девайса</h2>
-          <div class="product-rating">
-            <i data-lucide="star" class="star-icon fill"></i>
-            <span id="modal-product-rating">4.9</span>
-            <span class="rating-reviews" id="modal-product-reviews">(24 отзыва)</span>
-          </div>
-          <div class="product-price" id="modal-product-price">$0</div>
-          <p class="product-desc" id="modal-product-desc">Описание девайса...</p>
-          
-          <div class="specifications-list">
-            <h4>Характеристики:</h4>
-            <ul id="modal-product-specs"></ul>
-          </div>
-
-          <div class="modal-actions">
-            <div class="quantity-selector">
-              <button class="qty-btn" id="qty-minus">-</button>
-              <input type="number" id="qty-input" value="1" min="1" readonly>
-              <button class="qty-btn" id="qty-plus">+</button>
+                <button type="submit" class="rsvp-submit-btn">Жіберу</button>
+            </form>
+            <div id="rsvp-success" class="rsvp-success-message">
+                <i class="fas fa-heart-circle-check"></i>
+                <h3>Рахмет!</h3>
+                <p>Жауабыңыз сәтті қабылданды.</p>
             </div>
-            <button class="btn btn-primary flex-grow" id="modal-add-to-cart">
-              Добавить в корзину <i data-lucide="shopping-cart" class="btn-icon"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </section>
+    </main>
 
-  <div class="modal-overlay" id="checkout-modal">
-    <div class="modal-content checkout-content glassmorphism">
-      <button class="modal-close-btn icon-btn" id="checkout-modal-close">
-        <i data-lucide="x"></i>
-      </button>
-      
-      <div class="checkout-stepper">
-        <div class="step active" id="step-1-tab">
-          <div class="step-num">1</div>
-          <span>Доставка</span>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step" id="step-2-tab">
-          <div class="step-num">2</div>
-          <span>Оплата</span>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step" id="step-3-tab">
-          <div class="step-num">3</div>
-          <span>Заказ</span>
-        </div>
-      </div>
-
-      <div class="checkout-step-body" id="checkout-step-1">
-        <h3>Адрес доставки</h3>
-        <form id="shipping-form" class="checkout-form">
-          <div class="form-group">
-            <label for="checkout-name">ФИО</label>
-            <input type="text" id="checkout-name" required placeholder="Иванов Иван Иванович">
-          </div>
-          <div class="form-group">
-            <label for="checkout-email">E-mail</label>
-            <input type="email" id="checkout-email" required placeholder="name@domain.com">
-          </div>
-          <div class="form-group">
-            <label for="checkout-phone">Телефон</label>
-            <input type="tel" id="checkout-phone" required placeholder="+7 (999) 999-99-99">
-          </div>
-          <div class="form-group">
-            <label for="checkout-address">Адрес доставки</label>
-            <input type="text" id="checkout-address" required placeholder="г. Москва, ул. Ленина, д. 1, кв. 10">
-          </div>
-          <div class="form-actions-row">
-            <div></div>
-            <button type="submit" class="btn btn-primary">
-              Далее <i data-lucide="arrow-right" class="btn-icon"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div class="checkout-step-body hidden" id="checkout-step-2">
-        <h3>Оплата заказа</h3>
-        <form id="payment-form" class="checkout-form">
-          <div class="card-mockup">
-            <div class="card-logo">AETHER PAY</div>
-            <div class="card-chip"></div>
-            <div class="card-number" id="card-number-preview">•••• •••• •••• ••••</div>
-            <div class="card-details">
-              <div>
-                <span class="label">Держатель</span>
-                <span class="value" id="card-holder-preview">CARDHOLDER NAME</span>
-              </div>
-              <div>
-                <span class="label">Срок</span>
-                <span class="value" id="card-expiry-preview">MM/YY</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="card-number">Номер карты</label>
-            <input type="text" id="card-number" required placeholder="4276 4500 0000 0000" maxlength="19">
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="card-expiry">Срок действия</label>
-              <input type="text" id="card-expiry" required placeholder="12/28" maxlength="5">
-            </div>
-            <div class="form-group">
-              <label for="card-cvc">CVC</label>
-              <input type="password" id="card-cvc" required placeholder="•••" maxlength="3">
-            </div>
-          </div>
-          <div class="form-actions-row">
-            <button type="button" class="btn btn-secondary" id="payment-back-btn">
-              <i data-lucide="arrow-left" class="btn-icon"></i> Назад
-            </button>
-            <button type="submit" class="btn btn-primary">
-              Подтвердить <i data-lucide="check" class="btn-icon"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div class="checkout-step-body hidden text-center" id="checkout-step-3">
-        <div class="success-icon-wrapper">
-          <i data-lucide="check-circle" class="success-icon"></i>
-        </div>
-        <h2>Заказ успешно оформлен!</h2>
-        <p class="order-summary-text">Номер вашего заказа: <strong id="order-number-val">#AE-492041</strong></p>
-        <p class="order-desc-text">Мы отправили подтверждение на ваш e-mail. Наши курьеры доставят девайсы в течение 24 часов.</p>
-        <button class="btn btn-primary" id="checkout-finish-btn">
-          Вернуться в магазин <i data-lucide="shopping-bag" class="btn-icon"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="tracking-modal">
-    <div class="modal-content tracking-content glassmorphism">
-      <button class="modal-close-btn icon-btn" id="tracking-modal-close">
-        <i data-lucide="x"></i>
-      </button>
-      
-      <h2>Отслеживание заказа</h2>
-      <p class="section-desc">Введите номер заказа, чтобы узнать статус доставки дроном в реальном времени.</p>
-      
-      <form id="tracking-search-form" class="tracking-search-form">
-        <div class="tracking-search-row">
-          <input type="text" id="tracking-input" required placeholder="Введите номер заказа (например, #AE-492041)...">
-          <button type="submit" class="btn btn-primary">Найти <i data-lucide="search" class="btn-icon"></i></button>
-        </div>
-      </form>
-
-      <div id="tracking-results" class="hidden">
-        <div class="tracking-summary-row">
-          <div>
-            <span class="label">Номер заказа:</span>
-            <span class="value" id="track-order-id">#AE-000000</span>
-          </div>
-          <div>
-            <span class="label">Время прибытия:</span>
-            <span class="value cyan-text" id="track-eta">~35 минут</span>
-          </div>
-        </div>
-
-        <div class="tracking-timeline">
-          <div class="timeline-step" id="track-step-1">
-            <div class="step-dot"><i data-lucide="shopping-bag"></i></div>
-            <div class="step-info">
-              <h4>Размещен</h4>
-              <p>Заказ успешно создан и оплачен</p>
-            </div>
-          </div>
-          <div class="timeline-step" id="track-step-2">
-            <div class="step-dot"><i data-lucide="settings"></i></div>
-            <div class="step-info">
-              <h4>Обработка</h4>
-              <p>Устройство упаковано и готово</p>
-            </div>
-          </div>
-          <div class="timeline-step" id="track-step-3">
-            <div class="step-dot"><i data-lucide="navigation"></i></div>
-            <div class="step-info">
-              <h4>В пути</h4>
-              <p>Автономный дрон летит к вам</p>
-            </div>
-          </div>
-          <div class="timeline-step" id="track-step-4">
-            <div class="step-dot"><i data-lucide="check-circle-2"></i></div>
-            <div class="step-info">
-              <h4>Доставлен</h4>
-              <p>Заказ передан получателю</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="radar-container" id="radar-container">
-          <div class="radar-scan"></div>
-          <div class="radar-circle circle-1"></div>
-          <div class="radar-circle circle-2"></div>
-          <div class="radar-circle circle-3"></div>
-          
-          <div class="radar-marker marker-base" style="top: 80%; left: 15%;" title="Склад Aether Labs">
-            <div class="pulse"></div>
-            <i data-lucide="warehouse" class="marker-icon"></i>
-          </div>
-          
-          <div class="radar-marker marker-target" style="top: 25%; left: 75%;" id="radar-target-pin" title="Пункт доставки">
-            <div class="pulse"></div>
-            <i data-lucide="map-pin" class="marker-icon"></i>
-          </div>
-          
-          <div class="radar-drone" id="radar-drone" style="top: 80%; left: 15%;">
-            <i data-lucide="plane" class="drone-icon"></i>
-            <span class="drone-label">DRONE-AETHER</span>
-          </div>
-          
-          <div class="radar-grid-line h-line"></div>
-          <div class="radar-grid-line v-line"></div>
-        </div>
-
-        <div class="track-details-box">
-          <h4>Детали доставки:</h4>
-          <p class="track-addr-line"><strong>Адрес:</strong> <span id="track-address-text">г. Москва, ул. Ленина</span></p>
-          <div class="track-items-list" id="track-items-list"></div>
-        </div>
-      </div>
-
-      <div id="tracking-error" class="hidden text-center">
-        <i data-lucide="alert-triangle" class="error-warn-icon"></i>
-        <h3>Заказ не найден</h3>
-        <p>Убедитесь, что номер указан верно. Пример формата: #AE-123456</p>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="profile-modal">
-    <div class="modal-content profile-content glassmorphism">
-      <button class="modal-close-btn icon-btn" id="profile-modal-close">
-        <i data-lucide="x"></i>
-      </button>
-
-      <div class="profile-header">
-        <div class="profile-avatar">
-          <i data-lucide="user-circle"></i>
-        </div>
-        <div class="profile-info">
-          <h2>Личный кабинет</h2>
-          <p class="profile-subtitle">История ваших заказов</p>
-        </div>
-      </div>
-
-      <div class="profile-orders-section">
-        <div class="profile-orders-empty hidden" id="profile-empty-state">
-          <i data-lucide="package-open"></i>
-          <h3>Заказов пока нет</h3>
-          <p>После оформления заказа он появится здесь</p>
-          <button class="btn btn-primary" id="profile-go-shop-btn">
-            Перейти в магазин <i data-lucide="shopping-bag" class="btn-icon"></i>
-          </button>
-        </div>
-
-        <div id="profile-orders-list"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="toast-container" id="toast-container"></div>
-
-  <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
