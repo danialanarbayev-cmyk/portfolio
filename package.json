@@ -1,17 +1,11 @@
 {
-  "name": "aether-labs-store",
-  "version": "1.0.0",
-  "description": "Premium e-commerce web application for Aether Labs devices",
-  "main": "index.html",
-  "scripts": {
-    "dev": "npx -y serve . -l 3000"
-  },
-  "keywords": [
-    "ecommerce",
-    "futuristic",
-    "glassmorphism",
-    "spa"
-  ],
-  "author": "Aether Labs Team",
-  "license": "MIT"
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "🌸 Открыть сайт в браузере",
+            "type": "chrome",
+            "request": "launch",
+            "file": "${workspaceFolder}/index.html"
+        }
+    ]
 }
