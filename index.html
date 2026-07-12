@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Даурен мен Алинаның үйлену тойға шақыру. Сіздерді қуанышымызға ортақтасуға шақырамыз!">
     <title>Даурен мен Алинаның үйлену тойы</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Forum&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -17,7 +20,193 @@
 
 <body>
 
+    <canvas id="petals-canvas"></canvas>
+
+    <button id="music-toggle" class="music-btn" aria-label="Музыканы қосу немесе өшіру">
+        <i class="fas fa-music"></i>
+        <div class="music-wave">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </button>
+
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mp3">
+    </audio>
+
+    <header class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">Үйлену тойға шақыру</p>
+            <h1 class="hero-names">Даурен & Алина</h1>
+            <div class="hero-divider">
+                <span class="line"></span>
+                <i class="fas fa-heart"></i>
+                <span class="line"></span>
+            </div>
+            <p class="hero-date">23.08.2026</p>
+            <p class="hero-location-text"></p>
+            <a href="#story" class="scroll-down-btn" aria-label="Төмен жылжу">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </header>
+
     <main class="container">
+
+        <section id="story" class="section glass-card">
+            <div class="story-ornament-top">
+                <i class="fas fa-feather-alt"></i>
+            </div>
+            <h2 class="section-title cursive">Құрметті ағайын-туыс, құда-жекжат, дос-жарандар!</h2>
+            <div class="story-text">
+                <p>Сіздерді ұлымыз Даурен мен келініміз Алинаның үйлену тойының қадірлі қонағы болуға шақырамыз!</p>
+            </div>
+            <div class="story-ornament-bottom">
+                <i class="fas fa-seedling"></i>
+            </div>
+        </section>
+
+        <section id="program" class="section glass-card">
+            <h2 class="section-title cursive">Той салтанаты:</h2>
+            <p class="program-date">23 тамыз 2026 жыл<br>сағат 14:00</p>
+
+            <h3 class="section-subtitle">Тойдың бағдарламасы:</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-user-friends"></i></div>
+                    <div class="timeline-content">
+                        <h4>14:00</h4>
+                        <p>Қонақтардың жиналуы</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-ring"></i></div>
+                    <div class="timeline-content">
+                        <h4>15:00</h4>
+                        <p>Беташар</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-glass-cheers"></i></div>
+                    <div class="timeline-content">
+                        <h4>15:30</h4>
+                        <p>Тойдың басталуы</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calendar-wrapper">
+                <table class="calendar">
+                    <thead>
+                        <tr>
+                            <th>Дс</th>
+                            <th>Сс</th>
+                            <th>Ср</th>
+                            <th>Бс</th>
+                            <th>Жм</th>
+                            <th>Сб</th>
+                            <th>Жб</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>18</td>
+                            <td>19</td>
+                            <td>20</td>
+                            <td>21</td>
+                            <td>22</td>
+                            <td><span class="heart-date">23</span></td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                            <td>27</td>
+                            <td>28</td>
+                            <td>29</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="location" class="section glass-card">
+            <h3 class="section-title">Мекен-жайымыз:</h3>
+            <p class="section-subtitle"></p>
+
+            <div class="location-details">
+                <i class="fas fa-hotel location-icon"></i>
+                <h3>Wyndham Garden Astana</h3>
+                <p class="address"><i class="fas fa-map-marker-alt"></i> Хусейн бен Талал көшесі, 25, Астана қаласы</p>
+            </div>
+
+            <div class="map-wrapper">
+                <iframe src="https://maps.google.com/maps?q=Wyndham+Garden+Astana&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="map-actions">
+                <a href="https://maps.google.com/?q=Wyndham+Garden+Astana,+Husein+ben+Talal+25,+Astana" target="_blank"
+                    class="map-link-btn google-maps">
+                    <i class="fab fa-google"></i> Google Maps
+                </a>
+                <a href="https://yandex.ru/maps/?text=Wyndham+Garden+Astana" target="_blank"
+                    class="map-link-btn yandex-maps">
+                    <i class="fas fa-map-marked-alt"></i> Яндекс.Карталар
+                </a>
+                <a href="https://2gis.kz/astana/search/Wyndham%20Garden%20Astana" target="_blank"
+                    class="map-link-btn double-gis">
+                    <i class="fas fa-location-arrow"></i> 2GIS
+                </a>
+            </div>
+        </section>
+
+        <section id="hosts" class="section glass-card">
+            <h2 class="section-title cursive">Той иелері</h2>
+            <p class="hosts-names">Даулет & Дина</p>
+        </section>
+
         <section id="rsvp" class="section glass-card">
             <h2 class="section-title">Тойға қатысуыңызды растаңыз:</h2>
             <form id="rsvp-form" class="rsvp-form">
@@ -63,9 +252,76 @@
                 <p>Жауабыңыз сәтті қабылданды.</p>
             </div>
         </section>
+
+        <section id="countdown-section" class="section glass-card">
+            <h2 class="section-title">Тойға дейін қалды</h2>
+            <div class="timer-container">
+                <div class="timer-box">
+                    <span id="days" class="timer-number">00</span>
+                    <span class="timer-label">күн</span>
+                </div>
+                <div class="timer-divider">:</div>
+                <div class="timer-box">
+                    <span id="hours" class="timer-number">00</span>
+                    <span class="timer-label">сағат</span>
+                </div>
+                <div class="timer-divider">:</div>
+                <div class="timer-box">
+                    <span id="minutes" class="timer-number">00</span>
+                    <span class="timer-label">минут</span>
+                </div>
+                <div class="timer-divider">:</div>
+                <div class="timer-box">
+                    <span id="seconds" class="timer-number">00</span>
+                    <span class="timer-label">секунд</span>
+                </div>
+            </div>
+        </section>
+
+
     </main>
 
-    <script src="script.js"></script>
+    <footer class="footer">
+        <p class="footer-names">Даурен & Алина</p>
+        <p class="footer-text">Сіздерді үйлену тойымызда күтеміз!</p>
+        <p class="footer-year">&copy; 2026</p>
+        <button id="view-rsvp-btn" class="view-rsvp-btn" aria-label="Жауаптарды көру">
+            <i class="fas fa-lock"></i>
+        </button>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <div id="admin-modal" class="admin-modal lightbox">
+        <span class="admin-modal-close">&times;</span>
+        <div class="admin-modal-content glass-card">
+            <h2>Қатысу жауаптарының тізімі</h2>
+            <div class="admin-table-wrapper">
+                <table id="responses-table">
+                    <thead>
+                        <tr>
+                            <th>Аты-жөні</th>
+                            <th>Жауабы</th>
+                            <th>Уақыты</th>
+                        </tr>
+                    </thead>
+                    <tbody id="responses-list">
+                    </tbody>
+                </table>
+            </div>
+            <div class="admin-actions">
+                <button id="export-csv-btn" class="admin-btn"><i class="fas fa-file-excel"></i> Excel / CSV</button>
+                <button id="clear-responses-btn" class="admin-btn clear-btn"><i class="fas fa-trash-alt"></i>
+                    Тазарту</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 
 </html>
